@@ -5,7 +5,9 @@ app.controller('mainCtrl', function($scope, parseService){
 
     $scope.getParseData = function(){
         parseService.getData().then(function(data){
-            $scope.messages = data.data.results;
+            console.log(data.data);
+            $scope.messages = data.data;
+            $scope.messages.reverse();
         })
     };
 
@@ -14,11 +16,11 @@ app.controller('mainCtrl', function($scope, parseService){
         if(!$scope.message) return;
         parseService.postData($scope.message)
         $scope.message = '';
-
     };
 
    $scope.getParseData();
    setInterval(function(){
      $scope.getParseData();
    }, 1500)
+
 })
